@@ -1,0 +1,55 @@
+version: '3.7'
+
+services:
+  django:
+    container_name: django
+    restart: always
+    build: ./social
+    ports:
+      - 8000:8000
+    volumes:
+      - ./social:/usr/src/app
+      - static_volume:/usr/src/static
+    env_file: .env
+    command: uvicorn social:social:asgi:application --port 8000
+    # --ssl-keyfile=./key.pem --ssl-certfile=./cert.pem
+    networks:
+      - database_network
+      - django_network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - static_volume:/static
+      - ./default.nginx:/etc/nginx/sites-enabled/default
+    networks:
+      - django_network
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: $PG_USER
+      POSTGRES_PASSWORD: $PG_PASSWORD
+      POSTGRES_DB: $PG_DATABASE
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data/
+    networks:
+      - database_network
+
+networks:
+  database_network:
+    driver: bridge
+  django_network:
+    driver: bridge
+
+volumes:
+  static_volume:
+  postgres_volume:

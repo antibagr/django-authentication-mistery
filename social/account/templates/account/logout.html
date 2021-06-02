@@ -1,0 +1,16 @@
+{% extends 'account/base.html' %}
+
+{% block head %}
+    <title>Sign up</title>
+{% endblock head %}
+
+
+{% load crispy_forms_tags %}
+{% block content %}
+<h2>XOXO</h2>
+<div class="border-top pt-3">
+    <small class="text-muted">
+        <a href="{% url 'login' %}" class="ml-2">Log in back</a>
+    </small>
+</div>
+{% endblock content %}

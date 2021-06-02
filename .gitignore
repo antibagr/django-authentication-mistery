@@ -1,12 +1,12 @@
-# WEB
-
-node_modules
-static
-
-#static database-related files
+#current project
+.vs
+migrations/
+*.sqlite3
+*.db
+media/
+static/
 
 *.pyo
-db.db
 *.exe
 
 # Byte-compiled / optimized / DLL files

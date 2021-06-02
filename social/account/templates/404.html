@@ -1,0 +1,14 @@
+{% extends 'account/base.html' %}
+
+{% block head %}
+    <title>Sign up</title>
+{% endblock head %}
+
+
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="border-top pt-3">
+  <h2>Oops. There's no such page.</h2>
+  <a href="{% url 'home' %}" class="m-2">Home.</a>
+</div>
+{% endblock content %}

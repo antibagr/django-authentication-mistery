@@ -1,0 +1,39 @@
+{% extends 'account/base.html' %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+{% block head %}
+    <title>Profile</title>
+{% endblock head %}
+
+{% block content %}
+<div class="col-md-8">
+
+  <div class="media">
+    {% thumbnail user.image "200x200" crop="center" as im %}
+        <img class="rounded-circle account-img" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.first_name }}</h2>
+      <p class="text-secondary"></p>
+    </div>
+  </div>
+
+  <h2>{{ user.email }}</h2>
+
+  <div class="container-fluid container-fluid-max"  align="left">
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <fieldset class="form-group p-3">
+        {{ form|crispy }}
+        <button type="submit" name="button" class="btn btn-outline-info">Update</button>
+      </fieldset>
+    </form>
+  </div>
+
+<a href="{% url 'account_change_password' %}">Change password</a>
+
+</div>
+</div>
+{% endblock content %}

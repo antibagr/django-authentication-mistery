@@ -1,0 +1,8 @@
+django
+django-crispy-forms
+django-model-utils
+python-dotenv
+sorl-thumbnail
+Pillow
+psycopg2-binary
+uvicorn

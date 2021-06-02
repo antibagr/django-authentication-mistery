@@ -1,0 +1,10 @@
+# Test Dependencies
+
+pytest-django
+pytest-cov              # test coverage information
+pytest-xdist            # run test concurrently
+pytest-pythonpath       # find django settings
+pytest-factoryboy       # Fake model data
+django_dynamic_fixture  # Random generated data
+pytest-mock             # Mocking functions
+pytest-clarity          # Verbose and colorful diff
